@@ -7,7 +7,7 @@ class MovieDataSource {
     fun getUpcomingMovies(): MovieList {
         return MovieList()
     }
-    
+
     fun getTopRatedMovies(): MovieList {
         return MovieList()
     }
