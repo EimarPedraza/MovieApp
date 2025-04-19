@@ -19,6 +19,24 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
         }
     }
 
+    fun fetchTopRatedMovies() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Succes(repo.getTopRatedMovies()))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
+    fun fetchPopularMovies() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Succes(repo.getPopularMovies()))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
 }
 
 class MoviewViewModelFactory (private val repo: MovieRepository) : ViewModelProvider.Factory {
