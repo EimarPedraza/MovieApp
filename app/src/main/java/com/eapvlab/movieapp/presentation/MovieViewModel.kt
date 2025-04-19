@@ -10,28 +10,10 @@ import java.lang.Exception
 
 class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
 
-    fun fetchUpCommingMovies() = liveData(Dispatchers.IO) {
+    fun fetchMainScreenMovies() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            emit(Resource.Succes(repo.getUpComingMovies()))
-        } catch (e: Exception) {
-            emit(Resource.Failure(e))
-        }
-    }
-
-    fun fetchTopRatedMovies() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            emit(Resource.Succes(repo.getTopRatedMovies()))
-        } catch (e: Exception) {
-            emit(Resource.Failure(e))
-        }
-    }
-
-    fun fetchPopularMovies() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            emit(Resource.Succes(repo.getPopularMovies()))
+            emit(Resource.Succes(Triple(repo.getUpComingMovies(), repo.getTopRatedMovies(), repo.getPopularMovies())))
         } catch (e: Exception) {
             emit(Resource.Failure(e))
         }

@@ -29,44 +29,18 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         binding = FragmentMovieBinding.bind(view)
 
         //viewLifecycleOwner permite no recrear varios observers y evitar multiples peticiones a la vista
-        viewModel.fetchUpCommingMovies().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner, Observer { result ->
             when (result){
                 is Resource.Loading -> {
-                    Log.d("LiveData-UpComming", "Loading...")
+                    Log.d("LiveData", "Loading...")
                 }
                 is Resource.Succes -> {
-                    Log.d("LiveData-UpComming", "${result.data}")
+                    Log.d("LiveData", "UpComing: ${result.data.first}")
+                    Log.d("LiveData", "TopRated: ${result.data.second}")
+                    Log.d("LiveData", "Popular: ${result.data.third}")
                 }
                 is Resource.Failure -> {
-                    Log.d("LiveData-UpComming", "Error: ${result.exception}")
-                }
-            }
-        })
-
-        viewModel.fetchTopRatedMovies().observe(viewLifecycleOwner, Observer { result ->
-            when (result){
-                is Resource.Loading -> {
-                    Log.d("LiveData-TopRated", "Loading...")
-                }
-                is Resource.Succes -> {
-                    Log.d("LiveData-TopRated", "${result.data}")
-                }
-                is Resource.Failure -> {
-                    Log.d("LiveData-TopRated", "Error: ${result.exception}")
-                }
-            }
-        })
-
-        viewModel.fetchPopularMovies().observe(viewLifecycleOwner, Observer { result ->
-            when (result){
-                is Resource.Loading -> {
-                    Log.d("LiveData-Popular", "Loading...")
-                }
-                is Resource.Succes -> {
-                    Log.d("LiveData-Popular", "${result.data}")
-                }
-                is Resource.Failure -> {
-                    Log.d("LiveData-Popular", "Error: ${result.exception}")
+                    Log.d("LiveDatag", "Error: ${result.exception}")
                 }
             }
         })
