@@ -1,7 +1,8 @@
-package com.eapvlab.movieapp
+package com.eapvlab.movieapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.eapvlab.movieapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
