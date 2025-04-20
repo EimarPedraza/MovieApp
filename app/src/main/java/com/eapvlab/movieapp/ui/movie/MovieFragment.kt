@@ -11,7 +11,7 @@ import com.eapvlab.movieapp.core.Resource
 import com.eapvlab.movieapp.data.remote.MovieDataSource
 import com.eapvlab.movieapp.databinding.FragmentMovieBinding
 import com.eapvlab.movieapp.presentation.MovieViewModel
-import com.eapvlab.movieapp.presentation.MoviewViewModelFactory
+import com.eapvlab.movieapp.presentation.MovieViewModelFactory
 import com.eapvlab.movieapp.repository.MovieRepositoryImpl
 import com.eapvlab.movieapp.repository.RetrofitClient
 
@@ -19,7 +19,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
 
     private lateinit var binding: FragmentMovieBinding
     private val viewModel by viewModels<MovieViewModel> {
-        MoviewViewModelFactory(
+        MovieViewModelFactory(
             MovieRepositoryImpl(MovieDataSource(RetrofitClient.webService))
         )
     }
