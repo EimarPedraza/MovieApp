@@ -1,9 +1,9 @@
 package com.eapvlab.movieapp.repository
 
 import com.eapvlab.movieapp.data.model.MovieList
-import com.eapvlab.movieapp.data.remote.MovieDataSource
+import com.eapvlab.movieapp.data.remote.RemoteMovieDataSource
 
-class MovieRepositoryImpl(private val dataSource: MovieDataSource): MovieRepository {
+class MovieRepositoryImpl(private val dataSource: RemoteMovieDataSource): MovieRepository {
 
     override suspend fun getUpComingMovies(): MovieList = dataSource.getUpcomingMovies()
 
