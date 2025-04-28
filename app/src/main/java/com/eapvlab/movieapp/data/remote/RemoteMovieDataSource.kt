@@ -12,16 +12,16 @@ class RemoteMovieDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    suspend fun getUpcomingMovies(): MovieList = withContext(ioDispatcher) {
-        webService.getUpComingMovies(AppConstants.API_KEY, AppConstants.LAN_ES_MX)
+    suspend fun getUpcomingMovies(language: String): MovieList = withContext(ioDispatcher) {
+        webService.getUpComingMovies(AppConstants.API_KEY, language)
     }
 
-    suspend fun getTopRatedMovies(): MovieList = withContext(ioDispatcher) {
-        webService.getTopRatedMovies(AppConstants.API_KEY, AppConstants.LAN_ES_MX)
+    suspend fun getTopRatedMovies(language: String): MovieList = withContext(ioDispatcher) {
+        webService.getTopRatedMovies(AppConstants.API_KEY, language)
     }
 
-    suspend fun getPopularMovies(): MovieList = withContext(ioDispatcher) {
-        webService.getPopularMovies(AppConstants.API_KEY, AppConstants.LAN_ES_MX)
+    suspend fun getPopularMovies(language: String): MovieList = withContext(ioDispatcher) {
+        webService.getPopularMovies(AppConstants.API_KEY, language)
     }
 
 }

@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">MovieApp</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="title_popular_movies">Popular Movies</string>
+    <string name="title_upcoming_movies">Upcoming Movies</string>
+    <string name="title_top_rated_movies">Top Rated Movies</string>
+
+    <string name="language_format">Language: %1$s</string>
+    <string name="rating_format">%1$s (%2$d Reviews)</string>
+    <string name="released_format">Released: %1$s</string>
+    <string name="subtitle_bookmark">Bookmark</string>
+    <string name="subtitle_favorite">Favorite</string>
+    <string name="subtitle_share">Share</string>
+    <string name="title_overview">Overview</string>
 </resources>

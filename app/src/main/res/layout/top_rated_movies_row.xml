@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Top Rated Movies" />
+        android:text="@string/title_top_rated_movies" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_top_rated_movies"

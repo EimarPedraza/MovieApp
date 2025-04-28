@@ -6,6 +6,7 @@ object AppConstants {
     const val API_KEY = "AyElDrilococoElCreeQueNoLoVi"
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val LAN_ES_MX = "es-MX"
+    const val LAN_EN_US = "en-US"
 
     //NET TEST
     const val PING_IP = "8.8.8.8"

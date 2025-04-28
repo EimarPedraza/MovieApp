@@ -1,6 +1,7 @@
 package com.eapvlab.movieapp.repository
 
 import com.eapvlab.movieapp.core.InternetCheck
+import com.eapvlab.movieapp.core.Utils.getDefaultLanguage
 import com.eapvlab.movieapp.data.local.LocalMovieDataSource
 import com.eapvlab.movieapp.data.model.MovieList
 import com.eapvlab.movieapp.data.model.toMovieEntity
@@ -13,7 +14,7 @@ class MovieRepositoryImpl(
 
     override suspend fun getUpComingMovies(): MovieList {
         return if (InternetCheck.isNetworkAvailable()) {
-            dataSourceRemote.getUpcomingMovies().results.forEach { movie ->
+            dataSourceRemote.getUpcomingMovies(getDefaultLanguage()).results.forEach { movie ->
                 dataSourceLocal.saveMovie(movie.toMovieEntity("upcoming"))
             }
             dataSourceLocal.getUpcomingMovies()
@@ -24,7 +25,7 @@ class MovieRepositoryImpl(
 
     override suspend fun getTopRatedMovies(): MovieList {
         return if (InternetCheck.isNetworkAvailable()) {
-            dataSourceRemote.getTopRatedMovies().results.forEach { movie ->
+            dataSourceRemote.getTopRatedMovies(getDefaultLanguage()).results.forEach { movie ->
                 dataSourceLocal.saveMovie(movie.toMovieEntity("toprated"))
             }
             dataSourceLocal.getTopRatedMovies()
@@ -35,7 +36,7 @@ class MovieRepositoryImpl(
 
     override suspend fun getPopularMovies(): MovieList {
         return if (InternetCheck.isNetworkAvailable()) {
-            dataSourceRemote.getPopularMovies().results.forEach { movie ->
+            dataSourceRemote.getPopularMovies(getDefaultLanguage()).results.forEach { movie ->
                 dataSourceLocal.saveMovie(movie.toMovieEntity("popular"))
             }
             dataSourceLocal.getPopularMovies()
