@@ -1,14 +1,47 @@
 package com.eapvlab.movieapp.repository
 
+import com.eapvlab.movieapp.core.InternetCheck
+import com.eapvlab.movieapp.data.local.LocalMovieDataSource
 import com.eapvlab.movieapp.data.model.MovieList
+import com.eapvlab.movieapp.data.model.toMovieEntity
 import com.eapvlab.movieapp.data.remote.RemoteMovieDataSource
 
-class MovieRepositoryImpl(private val dataSource: RemoteMovieDataSource): MovieRepository {
+class MovieRepositoryImpl(
+    private val dataSourceRemote: RemoteMovieDataSource,
+    private val dataSourceLocal: LocalMovieDataSource
+): MovieRepository {
 
-    override suspend fun getUpComingMovies(): MovieList = dataSource.getUpcomingMovies()
+    override suspend fun getUpComingMovies(): MovieList {
+        return if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getUpcomingMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("upcoming"))
+            }
+            dataSourceLocal.getUpcomingMovies()
+        } else {
+            dataSourceLocal.getUpcomingMovies()
+        }
+    }
 
-    override suspend fun getTopRatedMovies(): MovieList = dataSource.getTopRatedMovies()
+    override suspend fun getTopRatedMovies(): MovieList {
+        return if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getTopRatedMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("toprated"))
+            }
+            dataSourceLocal.getTopRatedMovies()
+        } else {
+            dataSourceLocal.getTopRatedMovies()
+        }
+    }
 
-    override suspend fun getPopularMovies(): MovieList = dataSource.getPopularMovies()
+    override suspend fun getPopularMovies(): MovieList {
+        return if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getPopularMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("popular"))
+            }
+            dataSourceLocal.getPopularMovies()
+        } else {
+            dataSourceLocal.getPopularMovies()
+        }
+    }
 
 }
