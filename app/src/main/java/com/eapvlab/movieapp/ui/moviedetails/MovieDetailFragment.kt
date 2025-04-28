@@ -6,6 +6,8 @@ import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.eapvlab.movieapp.R
+import com.eapvlab.movieapp.application.AppConstants.BASE_BACKGROUND_POSTER_URL
+import com.eapvlab.movieapp.application.AppConstants.BASE_POSTER_URL
 import com.eapvlab.movieapp.databinding.FragmentMovieDetailBinding
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
@@ -16,8 +18,8 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMovieDetailBinding.bind(view)
-        Glide.with(requireContext()).load("https://image.tmdb.org/t/p/w500/${args.posterImageUrl}").centerCrop().into(binding.imgMovie)
-        Glide.with(requireContext()).load("https://image.tmdb.org/t/p/w500/${args.backgroundImageUrl}").centerCrop().into(binding.imgBackground)
+        Glide.with(requireContext()).load("${BASE_POSTER_URL}${args.posterImageUrl}").centerCrop().into(binding.imgMovie)
+        Glide.with(requireContext()).load("${BASE_BACKGROUND_POSTER_URL}${args.backgroundImageUrl}").centerCrop().into(binding.imgBackground)
         binding.txtTitle.text = args.title
         binding.txtDescription.text = args.overview
         binding.txtLanguage.text = getString(R.string.language_format, args.language)
